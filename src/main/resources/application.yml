@@ -1,3 +1,6 @@
 logging:
   level:
     root: off
+
+player:
+  initial-chips: 100
