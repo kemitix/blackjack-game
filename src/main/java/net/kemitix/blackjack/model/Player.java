@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Component
-public class Player {
+public class Player extends AbstractCardHand {
 
     @Value("${player.initial-chips}")
     private int chips;
