@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author pcampbell
  */
 @Component
-public class Dealer extends AbstractCardHand {
+public class Dealer extends AbstractCardHand implements BlackJackDealer {
 
     private final CardShoe cardShoe;
 
@@ -31,21 +31,12 @@ public class Dealer extends AbstractCardHand {
         this.standLimit = standLimit;
     }
 
-    /**
-     * Deals a card from the card shoe into the designated card hand.
-     *
-     * @param hand the hand to deal the card into
-     */
+    @Override
     public final void hit(final CardHand hand) {
         hand.addCard(cardShoe.deal());
     }
 
-    /**
-     * The initial deal at the start of the game, dealing two cards alternating,
-     * to the designated hand and the dealer's own hand.
-     *
-     * @param hand the other hand to deal into
-     */
+    @Override
     public final void initialDeal(final CardHand hand) {
         hit(hand);
         hit(this);
@@ -53,12 +44,7 @@ public class Dealer extends AbstractCardHand {
         hit(this);
     }
 
-    /**
-     * The dealer's play, using the stand limit set in configuration.
-     *
-     * <p>The dealer will keep dealing cards to themselves until they pass the
-     * stand limit.</p>
-     */
+    @Override
     public final void play() {
         while (getScore() < standLimit) {
             hit(this);
