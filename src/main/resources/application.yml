@@ -6,3 +6,4 @@ player:
   initial-chips: 100
 deck:
   number-of: 4
+  shuffle-limit: 75
