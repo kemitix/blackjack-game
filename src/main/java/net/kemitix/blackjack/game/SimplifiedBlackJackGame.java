@@ -107,12 +107,15 @@ class SimplifiedBlackJackGame implements BlackJackGame {
     }
 
     private void playerLost(final int stake) {
+        console.println("You lost!");
         player.setChips(player.getChips() - stake);
         player.moveCards(discardPile);
     }
 
     private void playerWon(final int stake) {
+        console.println("You won!");
         player.setChips(player.getChips() + stake);
         player.moveCards(discardPile);
     }
+
 }
