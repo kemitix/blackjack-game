@@ -40,7 +40,7 @@ class DefaultCardProvider implements CardProvider {
         val cards = new ArrayList<Card>(deckCount * CARDS_PER_DECK);
         for (int deck = 0; deck < deckCount; deck++) {
             for (int value = 0; value < CARDS_IN_SUIT; value++) {
-                final int finalValue = value;
+                final int finalValue = value + 1;
                 Arrays.asList(Suit.values()).forEach(suit -> {
                     cards.add(new Card(suit, finalValue));
                 });

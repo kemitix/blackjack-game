@@ -34,4 +34,24 @@ public class CardTest {
         assertThat(card.toString()).isEqualTo("[6d]");
     }
 
+    @Test
+    public void shouldToStringAceClubs() throws Exception {
+        assertThat(new Card(Suit.CLUB, 1).toString()).isEqualTo("[ac]");
+    }
+
+    @Test
+    public void shouldToStringJackSpaced() throws Exception {
+        assertThat(new Card(Suit.SPADE, 11).toString()).isEqualTo("[js]");
+    }
+
+    @Test
+    public void shouldToStringQueenSpaced() throws Exception {
+        assertThat(new Card(Suit.SPADE, 12).toString()).isEqualTo("[qs]");
+    }
+
+    @Test
+    public void shouldToStringKingHearts() throws Exception {
+        assertThat(new Card(Suit.HEART, 13).toString()).isEqualTo("[kh]");
+    }
+
 }

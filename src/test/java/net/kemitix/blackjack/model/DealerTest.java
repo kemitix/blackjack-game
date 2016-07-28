@@ -113,4 +113,15 @@ public class DealerTest {
         // only dealt once
         verify(cardShoe, times(2)).deal();
     }
+
+    @Test
+    public void shouldHideFirstCardInToString() throws Exception {
+        //given
+        val card1 = new Card(Suit.SPADE, 10);
+        val card2 = new Card(Suit.SPADE, 5);
+        dealer.addCard(card1);
+        dealer.addCard(card2);
+        //then
+        assertThat(dealer.getFilteredHandAsString()).isEqualTo("[??] [5s]");
+    }
 }

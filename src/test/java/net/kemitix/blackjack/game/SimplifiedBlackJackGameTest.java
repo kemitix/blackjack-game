@@ -173,10 +173,12 @@ public class SimplifiedBlackJackGameTest {
     }
 
     private void playerLost(final int stake) {
+        verify(console).println("You lost!");
         verify(player).setChips(STARTING_CHIPS - stake);
     }
 
     private void playerWins(final int stake) {
+        verify(console).println("You won!");
         verify(player).setChips(STARTING_CHIPS + stake);
     }
 

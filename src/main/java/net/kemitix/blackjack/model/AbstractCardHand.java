@@ -1,11 +1,14 @@
 package net.kemitix.blackjack.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.val;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of a hand of cards.
@@ -22,7 +25,8 @@ abstract class AbstractCardHand implements CardHand {
 
     private static final int FACE_CARD_VALUE = 10;
 
-    private Set<Card> hand = new HashSet<>();
+    @Getter(AccessLevel.PROTECTED)
+    private List<Card> hand = new ArrayList<>();
 
     @Getter
     private int score;
@@ -44,7 +48,9 @@ abstract class AbstractCardHand implements CardHand {
 
     @Override
     public final void moveCards(final CardPile pile) {
-        pile.add(hand);
+        val cards = new HashSet<Card>(hand.size());
+        cards.addAll(hand);
+        pile.add(cards);
         hand.clear();
         score = 0;
     }
@@ -59,8 +65,9 @@ abstract class AbstractCardHand implements CardHand {
         val aces = new AtomicInteger();
         score = hand.stream().mapToInt(card -> {
             int value = card.getValue();
-            if (value == HIGH_ACE_VALUE) {
+            if (value == LOW_ACE_VALUE) {
                 aces.incrementAndGet();
+                value = HIGH_ACE_VALUE;
             }
             // convert face cards to 10
             if (value > HIGH_ACE_VALUE) {
@@ -73,5 +80,13 @@ abstract class AbstractCardHand implements CardHand {
             score = score - (HIGH_ACE_VALUE - LOW_ACE_VALUE);
             aces.decrementAndGet();
         }
+    }
+
+    @Override
+    public String toString() {
+        return hand.stream()
+                   .map(Card::toString)
+                   .collect(Collectors.joining(" ")) + " (score: " + score
+                + ")";
     }
 }

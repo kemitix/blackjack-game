@@ -1,5 +1,6 @@
 package net.kemitix.blackjack.model;
 
+import lombok.val;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,6 +28,17 @@ public class DefaultCardProviderTest {
         cardProvider = new DefaultCardProvider(2);
         //then
         assertThat(cardProvider.createCards()).hasSize(104);
+    }
+
+    @Test
+    public void cardsShouldHaveValidValue() {
+        //given
+        cardProvider = new DefaultCardProvider(1);
+        //when
+        val cards = cardProvider.createCards();
+        //then
+        assertThat(cards).allMatch(
+                card -> card.getValue() >= 1 && card.getValue() <= 13);
     }
 
 }

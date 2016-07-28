@@ -29,4 +29,12 @@ public interface BlackJackDealer extends CardHand {
      * stand limit.</p>
      */
     void play();
+
+    /**
+     * Returns the dealers hand as string, with the first card dealt
+     * 'face-down'.
+     *
+     * @return the hand as a string
+     */
+    String getFilteredHandAsString();
 }

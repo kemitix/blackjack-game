@@ -46,9 +46,9 @@ public class AbstractCardHandTest {
         val card8 = new Card(Suit.DIAMOND, 8);
         val card9 = new Card(Suit.DIAMOND, 9);
         val card10 = new Card(Suit.DIAMOND, 10);
-        val cardAceD = new Card(Suit.DIAMOND, 11);
-        val cardAceS = new Card(Suit.SPADE, 11);
-        val cardQueen = new Card(Suit.DIAMOND, 13);
+        val cardAceD = new Card(Suit.DIAMOND, 1);
+        val cardAceS = new Card(Suit.SPADE, 1);
+        val cardQueen = new Card(Suit.DIAMOND, 12);
         cardHand3And4 = buildHand(card3, card4);
         cardHand4AndQueen = buildHand(card4, cardQueen);
         cardHand8AndAce = buildHand(card8, cardAceD);
@@ -119,5 +119,25 @@ public class AbstractCardHandTest {
         //then
         assertThat(cardHand4AndQueen.handIsEmpty()).isTrue();
         verify(cardPile).add(any());
+    }
+
+    @Test
+    public void showHandAsString() throws Exception {
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(cardHand3And4.toString())
+              .isEqualTo("[3d] [4d] (score: 7)");
+        softly.assertThat(cardHand4AndQueen.toString())
+              .isEqualTo("[4d] [qd] (score: 14)");
+        softly.assertThat(cardHand8AndAce.toString())
+              .isEqualTo("[8d] [ad] (score: 19)");
+        softly.assertThat(cardHand8And2Aces.toString())
+              .isEqualTo("[8d] [ad] [as] (score: 20)");
+        softly.assertThat(cardHand10And2Aces.toString())
+              .isEqualTo("[10d] [ad] [as] (score: 12)");
+        softly.assertThat(cardHand9And8And4.toString())
+              .isEqualTo("[9d] [8d] [4d] (score: 21)");
+        softly.assertThat(cardHand9And8And5.toString())
+              .isEqualTo("[9d] [8d] [5d] (score: 22)");
+        softly.assertAll();
     }
 }
