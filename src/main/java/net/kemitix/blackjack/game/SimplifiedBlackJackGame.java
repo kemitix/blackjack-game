@@ -58,6 +58,8 @@ class SimplifiedBlackJackGame implements BlackJackGame {
     public void play() {
         int stake = getStake();
         dealer.initialDeal(player);
+        showPlayersHand();
+        console.println("Dealers hand: " + dealer.getFilteredHandAsString());
         if (player.has21()) {
             playerWon(stake);
         } else {
@@ -80,6 +82,7 @@ class SimplifiedBlackJackGame implements BlackJackGame {
         boolean gameOver = false;
         while (!gameOver && playerWantsToHit()) {
             dealer.hit(player);
+            showPlayersHand();
             if (player.isBust()) {
                 playerLost(stake);
                 gameOver = true;
@@ -90,6 +93,10 @@ class SimplifiedBlackJackGame implements BlackJackGame {
         }
     }
 
+    private void showPlayersHand() {
+        console.println("Your hand: " + player.toString());
+    }
+
     private boolean playerWantsToHit() {
         console.println("Do you want to Hit? (y/n)");
         return console.readLine().matches("[yY]");
@@ -97,6 +104,7 @@ class SimplifiedBlackJackGame implements BlackJackGame {
 
     private void dealersPlay(final int stake) {
         dealer.play();
+        console.println("Dealer's hand: " + dealer.toString());
         if (dealer.isBust() || player.getScore() > dealer.getScore()) {
             playerWon(stake);
         } else if (player.getScore() < dealer.getScore()) {
