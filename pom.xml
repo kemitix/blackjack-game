@@ -10,7 +10,7 @@
         <version>1.16.0</version>
     </parent>
     <artifactId>blackjack-game</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0-SNAPSHOT</version>
     <description>Blackjack Game - Command Line</description>
     <url>https://github.com/kemitix/blackjack-game</url>
     <inceptionYear>2016</inceptionYear>
