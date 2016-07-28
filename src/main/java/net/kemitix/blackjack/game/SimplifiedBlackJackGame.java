@@ -103,19 +103,24 @@ class SimplifiedBlackJackGame implements BlackJackGame {
             playerLost(stake);
         }
         // if scores are the same then stand off and no change in players chips
-        dealer.moveCards(discardPile);
+        discardDealtCards();
     }
 
     private void playerLost(final int stake) {
         console.println("You lost!");
         player.setChips(player.getChips() - stake);
-        player.moveCards(discardPile);
+        discardDealtCards();
     }
 
     private void playerWon(final int stake) {
         console.println("You won!");
         player.setChips(player.getChips() + stake);
+        discardDealtCards();
+    }
+
+    private void discardDealtCards() {
         player.moveCards(discardPile);
+        dealer.moveCards(discardPile);
     }
 
 }
