@@ -28,29 +28,29 @@ abstract class AbstractCardHand implements CardHand {
     private int score;
 
     @Override
-    public boolean has21() {
+    public final boolean has21() {
         return score == TARGET_SCORE;
     }
 
     @Override
-    public boolean isBust() {
+    public final boolean isBust() {
         return score > TARGET_SCORE;
     }
 
     @Override
-    public boolean handIsEmpty() {
+    public final boolean handIsEmpty() {
         return hand.isEmpty();
     }
 
     @Override
-    public void moveCards(final CardPile pile) {
+    public final void moveCards(final CardPile pile) {
         pile.add(hand);
         hand.clear();
         score = 0;
     }
 
     @Override
-    public void addCard(final Card card) {
+    public final void addCard(final Card card) {
         hand.add(card);
         updateScore();
     }
