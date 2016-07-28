@@ -1,5 +1,6 @@
 package net.kemitix.blackjack.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.val;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of a hand of cards.
@@ -23,6 +25,7 @@ abstract class AbstractCardHand implements CardHand {
 
     private static final int FACE_CARD_VALUE = 10;
 
+    @Getter(AccessLevel.PROTECTED)
     private List<Card> hand = new ArrayList<>();
 
     @Getter
@@ -77,5 +80,13 @@ abstract class AbstractCardHand implements CardHand {
             score = score - (HIGH_ACE_VALUE - LOW_ACE_VALUE);
             aces.decrementAndGet();
         }
+    }
+
+    @Override
+    public String toString() {
+        return hand.stream()
+                   .map(Card::toString)
+                   .collect(Collectors.joining(" ")) + " (score: " + score
+                + ")";
     }
 }

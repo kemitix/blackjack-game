@@ -120,4 +120,24 @@ public class AbstractCardHandTest {
         assertThat(cardHand4AndQueen.handIsEmpty()).isTrue();
         verify(cardPile).add(any());
     }
+
+    @Test
+    public void showHandAsString() throws Exception {
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(cardHand3And4.toString())
+              .isEqualTo("[3d] [4d] (score: 7)");
+        softly.assertThat(cardHand4AndQueen.toString())
+              .isEqualTo("[4d] [qd] (score: 14)");
+        softly.assertThat(cardHand8AndAce.toString())
+              .isEqualTo("[8d] [ad] (score: 19)");
+        softly.assertThat(cardHand8And2Aces.toString())
+              .isEqualTo("[8d] [ad] [as] (score: 20)");
+        softly.assertThat(cardHand10And2Aces.toString())
+              .isEqualTo("[10d] [ad] [as] (score: 12)");
+        softly.assertThat(cardHand9And8And4.toString())
+              .isEqualTo("[9d] [8d] [4d] (score: 21)");
+        softly.assertThat(cardHand9And8And5.toString())
+              .isEqualTo("[9d] [8d] [5d] (score: 22)");
+        softly.assertAll();
+    }
 }
