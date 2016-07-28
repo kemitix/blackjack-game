@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: off
+
+player:
+  initial-chips: 100
+dealer:
+  stand-limit: 17
+deck:
+  number-of: 4
+  shuffle-limit: 75
