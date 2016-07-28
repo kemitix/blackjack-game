@@ -3,8 +3,9 @@ package net.kemitix.blackjack.model;
 import lombok.Getter;
 import lombok.val;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -22,7 +23,7 @@ abstract class AbstractCardHand implements CardHand {
 
     private static final int FACE_CARD_VALUE = 10;
 
-    private Set<Card> hand = new HashSet<>();
+    private List<Card> hand = new ArrayList<>();
 
     @Getter
     private int score;
@@ -44,7 +45,9 @@ abstract class AbstractCardHand implements CardHand {
 
     @Override
     public final void moveCards(final CardPile pile) {
-        pile.add(hand);
+        val cards = new HashSet<Card>(hand.size());
+        cards.addAll(hand);
+        pile.add(cards);
         hand.clear();
         score = 0;
     }
