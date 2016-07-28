@@ -46,9 +46,9 @@ public class AbstractCardHandTest {
         val card8 = new Card(Suit.DIAMOND, 8);
         val card9 = new Card(Suit.DIAMOND, 9);
         val card10 = new Card(Suit.DIAMOND, 10);
-        val cardAceD = new Card(Suit.DIAMOND, 11);
-        val cardAceS = new Card(Suit.SPADE, 11);
-        val cardQueen = new Card(Suit.DIAMOND, 13);
+        val cardAceD = new Card(Suit.DIAMOND, 1);
+        val cardAceS = new Card(Suit.SPADE, 1);
+        val cardQueen = new Card(Suit.DIAMOND, 12);
         cardHand3And4 = buildHand(card3, card4);
         cardHand4AndQueen = buildHand(card4, cardQueen);
         cardHand8AndAce = buildHand(card8, cardAceD);
