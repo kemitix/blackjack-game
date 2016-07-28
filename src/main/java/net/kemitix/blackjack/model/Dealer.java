@@ -1,5 +1,9 @@
 package net.kemitix.blackjack.model;
 
+import lombok.val;
+
+import java.util.stream.Collectors;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -49,5 +53,15 @@ public class Dealer extends AbstractCardHand implements BlackJackDealer {
         while (getScore() < standLimit) {
             hit(this);
         }
+    }
+
+    @Override
+    public final String getFilteredHandAsString() {
+        val hand = getHand();
+        val visible = hand.subList(1, hand.size())
+                          .stream()
+                          .map(Card::toString)
+                          .collect(Collectors.joining(" "));
+        return "[??] " + visible;
     }
 }
