@@ -65,13 +65,14 @@ abstract class AbstractCardHand implements CardHand {
         val aces = new AtomicInteger();
         score = hand.stream().mapToInt(card -> {
             int value = card.getValue();
+            // convert face cards to 10
+            if (value >= Card.JACK_CARD) {
+                value = FACE_CARD_VALUE;
+            }
+            // count aces as high initially
             if (value == LOW_ACE_VALUE) {
                 aces.incrementAndGet();
                 value = HIGH_ACE_VALUE;
-            }
-            // convert face cards to 10
-            if (value > HIGH_ACE_VALUE) {
-                value = FACE_CARD_VALUE;
             }
             return value;
         }).sum();

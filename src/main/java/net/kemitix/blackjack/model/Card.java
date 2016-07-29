@@ -12,9 +12,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Card {
 
-    private static final int ACE_CARD = 1;
+    public static final int JACK_CARD = 11;
 
-    private static final int JACK_CARD = 11;
+    private static final int ACE_CARD = 1;
 
     private static final int QUEEN_CARD = 12;
 

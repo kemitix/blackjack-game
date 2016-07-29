@@ -34,6 +34,8 @@ public class AbstractCardHandTest {
 
     private CardHand cardHand9And8And5;
 
+    private CardHand cardHand9AndJack;
+
     @Mock
     private CardPile cardPile;
 
@@ -49,6 +51,7 @@ public class AbstractCardHandTest {
         val cardAceD = new Card(Suit.DIAMOND, 1);
         val cardAceS = new Card(Suit.SPADE, 1);
         val cardQueen = new Card(Suit.DIAMOND, 12);
+        val cardJack = new Card(Suit.CLUB, Card.JACK_CARD);
         cardHand3And4 = buildHand(card3, card4);
         cardHand4AndQueen = buildHand(card4, cardQueen);
         cardHand8AndAce = buildHand(card8, cardAceD);
@@ -56,6 +59,7 @@ public class AbstractCardHandTest {
         cardHand10And2Aces = buildHand(card10, cardAceD, cardAceS);
         cardHand9And8And4 = buildHand(card9, card8, card4);
         cardHand9And8And5 = buildHand(card9, card8, card5);
+        cardHand9AndJack = buildHand(card9, cardJack);
     }
 
     private CardHand buildHand(final Card... cards) {
@@ -101,6 +105,7 @@ public class AbstractCardHandTest {
         softly.assertThat(cardHand10And2Aces.getScore()).isEqualTo(12);
         softly.assertThat(cardHand9And8And4.getScore()).isEqualTo(21);
         softly.assertThat(cardHand9And8And5.getScore()).isEqualTo(22);
+        softly.assertThat(cardHand9AndJack.getScore()).isEqualTo(19);
         softly.assertAll();
     }
 
