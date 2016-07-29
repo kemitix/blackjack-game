@@ -67,14 +67,14 @@ class DefaultCardShoe implements CardShoe {
     @Override
     public Card deal() {
         Card card = null;
-        if (contents.size() > 0) {
-            card = contents.remove(random.nextInt(contents.size()));
-        }
         if (contents.size() <= minimumSize) {
             val discards = discardPile.remove();
             if (discards != null) {
                 contents.addAll(discards);
             }
+        }
+        if (contents.size() > 0) {
+            card = contents.remove(random.nextInt(contents.size()));
         }
         return card;
     }
