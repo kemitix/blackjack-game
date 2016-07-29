@@ -82,4 +82,15 @@ public class DefaultCardShoeTest {
         assertThat(cardShoe.deal()).isNull();
     }
 
+    @Test
+    public void whenShoeIsEmptyAndDiscardIsNotLoadDiscardsBeforeDealing() {
+        //given
+        // cardShoe is empty
+        val discardedCard = new Card(Suit.CLUB, 4);
+        discardPile.add(Collections.singleton(discardedCard));
+        //when
+        val dealtCard = cardShoe.deal();
+        //then
+        assertThat(dealtCard).isSameAs(discardedCard);
+    }
 }
